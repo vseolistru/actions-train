@@ -2,7 +2,7 @@ name: Deploy React App
 on: push
 
 jobs:
-  print-testing:
+  testing:
     runs-on: ubuntu-latest
     steps:
       - name: Get repository code
@@ -13,6 +13,7 @@ jobs:
         run: npm run test
   lint:
     runs-on: ubuntu-latest
+    needs: testing
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
@@ -22,6 +23,7 @@ jobs:
         run: npm run lint
   build:
     runs-on: ubuntu-latest
+    needs: lint
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
