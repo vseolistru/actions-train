@@ -18,4 +18,5 @@ jobs:
       - name: navigate
         run: |
           cd test
+          echo files into test folder  
           ls
