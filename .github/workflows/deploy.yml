@@ -15,5 +15,9 @@ jobs:
         run: npm run lint
       - name: Deploy
         run: echo Success
+      - name: navigate
+        run: cd test
+      - name: show file
+        run: ls -la
 
 
