@@ -1,3 +1,3 @@
 a = 'Hello World'
 
-print (a)
+assert(a=='Hello World')

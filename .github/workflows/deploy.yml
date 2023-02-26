@@ -24,12 +24,17 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Install pytest
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
       - name: navigate
         run: |
           cd test
           echo files into test folder  
           ls
           python3 new.py
+          python3 -m pytest -s -v
       - name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.8.0
         with:
