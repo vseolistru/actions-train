@@ -34,7 +34,8 @@ jobs:
         uses: supercharge/mongodb-github-action@1.8.0
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
-        run: | 
+      - name: Start mongo
+        run: |
           mongod
-          echo success
+          echo success  
           
