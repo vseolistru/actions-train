@@ -28,7 +28,10 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pytest
-      - name: Start MongoDB
+  mongo:
+    needs: testing
+    steps:
+        - name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.8.0
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
