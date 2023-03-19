@@ -1,8 +1,7 @@
 name: Print Pull Request Context
-on: 
-  workflow_dispatch:
+on:
   pull_request:
-    types: [opened, edited, reopened]
+    types: [opened, reopened, edited]
 
 jobs:
   print: 
