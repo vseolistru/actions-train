@@ -9,9 +9,9 @@ jobs:
         uses: actions/checkout@v3
       - name: Cashe deps
         uses: actions/checkout@v3
-          with:
-            path: ~/.npm
-            key: node-modules-${{ hashFile('**/package.json') }}    
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFile('**/package.json') }}    
       - name: Install dependencies
         run: npm ci
       - name: Test application
@@ -24,9 +24,9 @@ jobs:
         uses: actions/checkout@v3
       - name: Cashe deps
         uses: actions/checkout@v3
-          with:
-            path: ~/.npm
-            key: node-modules-${{ hashFile('**/package.json') }}  
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFile('**/package.json') }}  
       - name: Install dependencies
         run: npm ci
       - name: Linter check
@@ -39,9 +39,9 @@ jobs:
         uses: actions/checkout@v3
       - name: Cashe deps
         uses: actions/checkout@v3
-          with:
-            path: ~/.npm
-            key: node-modules-${{ hashFile('**/package.json') }}          
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFile('**/package.json') }}          
       - name: Install dependencies
         run: npm ci
       - name: Build Runner
