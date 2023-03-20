@@ -1,16 +1,54 @@
-name: Demo Workflow
-on:
-  push: 
-    branches:
-      -main
+name: Deploy React App
+on: push
 
-jobs: 
-  print-demo:
+jobs:
+  testing:
     runs-on: ubuntu-latest
-    steps: 
-      - name: Print to console
-        run: echo Hello from gitActions
-      - name: Print a few lines
-        run: |
-          echo First line!
-          echo Second line!
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Cashe deps
+        uses: actions/checkout@v3
+          with:
+            path: ~/.npm
+            key: node-modules-${{ hashFile('**/package.json') }}    
+      - name: Install dependencies
+        run: npm ci
+      - name: Test application
+        run: npm run test
+  lint:
+    runs-on: ubuntu-latest
+    needs: testing
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Cashe deps
+        uses: actions/checkout@v3
+          with:
+            path: ~/.npm
+            key: node-modules-${{ hashFile('**/package.json') }}  
+      - name: Install dependencies
+        run: npm ci
+      - name: Linter check
+        run: npm run lint
+  build:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Cashe deps
+        uses: actions/checkout@v3
+          with:
+            path: ~/.npm
+            key: node-modules-${{ hashFile('**/package.json') }}          
+      - name: Install dependencies
+        run: npm ci
+      - name: Build Runner
+        run: npm run build
+      - name: Deploy
+        run: echo Success
+      - name: navigate
+        run: cd test
+      - name: show file
+        run: ls -la
